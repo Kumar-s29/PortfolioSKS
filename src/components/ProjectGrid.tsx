@@ -58,6 +58,14 @@ const PROJECTS: Project[] = [
     links: { github: "https://github.com/Kumar-s29/", live: "#" },
     category: "DATA_ANALYTICS"
   },
+  {
+    title: "Flight Booking Data Analysis",
+    description: "In-depth analysis of booking trends and revenue patterns using SQL optimization and Python-driven insights.",
+    tech: ["PostgreSQL", "Python", "FastAPI"],
+    image: "/assets/project_bg.png",
+    links: { github: "https://github.com/Kumar-s29/", live: "#" },
+    category: "DATA_ANALYTICS"
+  },
   // ServiceNow
   {
     title: "Enterprise ITSM System",
@@ -71,6 +79,22 @@ const PROJECTS: Project[] = [
     title: "Smart Service Automation",
     description: "ServiceNow Studio app with GlideAjax and Business Rules for backend automation.",
     tech: ["Studio", "JavaScript", "Glide"],
+    image: "/assets/project_bg.png",
+    links: { github: "https://github.com/Kumar-s29/", live: "#" },
+    category: "SERVICENOW"
+  },
+  {
+    title: "Streamlining Ticket Assignment",
+    description: "Automated ticket routing system using assignment rules and secure ACL implementations for enterprise support.",
+    tech: ["ITSM", "ACL", "Automation"],
+    image: "/assets/project_bg.png",
+    links: { github: "https://github.com/Kumar-s29/", live: "#" },
+    category: "SERVICENOW"
+  },
+  {
+    title: "Educational Management System",
+    description: "Custom ServiceNow application featuring structured tables and automated workflows for student data management.",
+    tech: ["Custom App", "Workflow", "Forms"],
     image: "/assets/project_bg.png",
     links: { github: "https://github.com/Kumar-s29/", live: "#" },
     category: "SERVICENOW"

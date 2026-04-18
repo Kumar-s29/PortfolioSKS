@@ -54,10 +54,10 @@ export default function Contact() {
                 Get in <br /><span className="text-outline">touch</span>
               </h2>
             </div>
-            
+
             <div className="space-y-6">
               <p className="text-on-surface-variant/60 text-lg md:text-xl font-sans max-w-md leading-relaxed">
-                Currently open to internship opportunities and collaborations in Full Stack Development and Data Analytics. 
+                Currently open to internship,full time opportunities and collaborations in Full Stack Development and Data Analytics.
               </p>
               <div className="flex flex-col gap-4 font-mono text-sm">
                 <div className="flex items-center gap-3">
