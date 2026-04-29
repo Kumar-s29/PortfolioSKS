@@ -1,106 +1,75 @@
 @import "tailwindcss";
 
-:root {
-  --background: #0e0e12;
-  --on-surface: #fcf8fe;
-  --on-surface-variant: #acaab0;
-  
-  --surface: #0e0e12;
-  --surface-container-low: #131317;
-  --surface-container: #19191e;
-  --surface-container-high: #212126;
-  --surface-bright: #2c2b32;
-  
-  --primary: #de8eff;
-  --primary-dim: #b90afc;
-  --on-primary: #4f006e;
-  
-  --secondary: #9193ff;
-  --tertiary: #c280ff;
-  
-  --outline: #76757a;
-  --outline-variant: rgba(72, 71, 76, 0.15);
-}
+@theme {
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
+  --color-border: #1e1e1e;
+  --color-accent-green: #00ff88;
+  --color-accent-amber: #f5a623;
+  --color-accent-blue: #4fc3f7;
+  --color-text-primary: #e8e8e8;
+  --color-text-muted: #666666;
 
-.env-data-analytics {
-  --primary: #00e5ff;
-  --primary-dim: #00b8d4;
-  --on-primary: #00363a;
-  --secondary: #7c4dff;
-  --tertiary: #00e5ff;
-}
+  --font-mono: var(--font-mono);
+  --font-sans: var(--font-sans);
 
-.env-servicenow {
-  --primary: #29ff9e;
-  --primary-dim: #00d17e;
-  --on-primary: #003d24;
-  --secondary: #ffffff;
-  --tertiary: #29ff9e;
-}
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-on-surface: var(--on-surface);
-  --color-on-surface-variant: var(--on-surface-variant);
-  
-  --color-surface: var(--surface);
-  --color-surface-container-low: var(--surface-container-low);
-  --color-surface-container: var(--surface-container);
-  --color-surface-container-high: var(--surface-container-high);
-  --color-surface-bright: var(--surface-bright);
-  
-  --color-primary: var(--primary);
-  --color-primary-dim: var(--primary-dim);
-  --color-on-primary: var(--on-primary);
-  
-  --color-secondary: var(--secondary);
-  --color-tertiary: var(--tertiary);
-  
-  --color-outline: var(--outline);
-  --color-outline-variant: var(--outline-variant);
-  
-  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular;
-  
-  --radius-md: 0.375rem;
-  --radius-sm: 0.25rem;
+  @keyframes type {
+    from { width: 0; }
+    to { width: 100%; }
+  }
 }
 
 @layer base {
-  * {
-    @apply border-outline-variant;
+  :root {
+    --background: #0a0a0a;
+    --foreground: #e8e8e8;
   }
-  
+
   body {
-    @apply bg-background text-on-surface font-sans overflow-x-hidden;
+    @apply bg-bg text-text-primary font-sans selection:bg-accent-green/30 selection:text-accent-green;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-mono tracking-tight;
   }
 }
 
 @layer utilities {
-  .text-display-lg {
-    @apply text-5xl md:text-7xl font-bold tracking-[-0.02em];
+  .terminal-glow {
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
   }
   
-  .text-label-md {
-    @apply font-mono text-sm uppercase tracking-wider text-on-surface-variant;
+  .scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0, 255, 136, 0.05) 50%,
+      transparent
+    );
+    opacity: 0.1;
+    position: absolute;
+    bottom: 100%;
+    animation: scanline 8s linear infinite;
   }
-  
-  .glass-panel {
-    @apply bg-surface-container-high/60 backdrop-blur-[20px] border border-white/5;
-  }
-  
-  .glow-primary {
-    @apply shadow-[0_0_40px_rgba(222,142,255,0.05)];
-  }
-  
-  .ambient-glow {
-    @apply absolute pointer-events-none rounded-full blur-[120px] opacity-20 transition-all duration-1000;
-  }
-}
 
-/* Custom transitions and scrollbar */
-::selection {
-  @apply bg-primary/30 text-primary;
+  .dot-grid {
+    background-image: radial-gradient(circle, #1e1e1e 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -108,13 +77,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-surface;
+  @apply bg-bg;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-surface-container-high rounded-full;
+  @apply bg-border rounded-full hover:bg-accent-green/40 transition-colors;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary/40;
+@layer components {
+  .btn-terminal {
+    @apply font-mono border border-border px-4 py-2 hover:border-accent-green hover:text-accent-green transition-all duration-300 bg-surface/50;
+  }
 }

@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import { EnvironmentProvider } from "@/context/EnvironmentContext";
+import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import CliTerminal from "./components/CliTerminal";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const dmSans = DM_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
 const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Swayamvarapu Kumara Swamy | Full Stack Developer",
-  description: "Portfolio of Swayamvarapu Kumara Swamy, a Full Stack Developer specializing in React.js, Python, and scalable web applications.",
+  title: "Kumar Swamy | Full Stack Engineer",
+  description: "Portfolio of Swayamvarapu Kumara Swamy, a Full Stack Developer specializing in premium web experiences and scalable architectures.",
 };
+
+import { ProfileProvider } from "./context/ProfileContext";
 
 export default function RootLayout({
   children,
@@ -24,13 +26,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} font-sans bg-background text-on-surface antialiased min-h-screen selection:bg-primary/30 selection:text-primary-foreground`}
+        className={`${dmSans.variable} ${jetBrainsMono.variable} font-sans bg-bg text-text-primary antialiased selection:bg-accent-green/30 selection:text-accent-green`}
       >
-        <EnvironmentProvider>
-          {children}
-        </EnvironmentProvider>
+        <ProfileProvider>
+          <div className="relative min-h-screen">
+            {/* Scanline Overlay */}
+            <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+              <div className="scanline" />
+            </div>
+            
+            {children}
+            <CliTerminal />
+          </div>
+        </ProfileProvider>
       </body>
     </html>
   );
